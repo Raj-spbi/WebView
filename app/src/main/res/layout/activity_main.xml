@@ -1,27 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:tools="http://schemas.android.com/tools"
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.drawerlayout.widget.DrawerLayout xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:id="@+id/drawer"-->
+<!--    android:fitsSystemWindows="true"-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android">-->
+<RelativeLayout android:id="@+id/containerBig"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer"
-    android:fitsSystemWindows="true"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout
-        android:id="@+id/containerBig"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            app:titleTextColor="#B5CBD5"
-            app:title=" "
-            android:background="@color/white"
-            android:layout_height="?attr/actionBarSize"
-            android:elevation="8dp"
-            android:minHeight="?attr/actionBarSize"/>
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            app:titleTextColor="#B5CBD5"-->
+<!--            app:title=" "-->
+<!--            android:background="@color/white"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:elevation="8dp"-->
+<!--            android:minHeight="?attr/actionBarSize"/>-->
 
         <!--                     android:background="@android:color/transparent"   />-->
 
@@ -31,7 +31,6 @@
         <!--            android:layout_width="match_parent"-->
         <!--            android:layout_height="match_parent">-->
         <RelativeLayout
-            android:layout_below="@id/toolbar"
             android:id="@+id/container"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -41,10 +40,10 @@
               android:layout_height="match_parent"
               android:id="@+id/webView"/>
             <com.tuyenmonkey.mkloader.MKLoader
-                android:layout_width="75dp"
+                android:layout_width="60dp"
                 android:id="@+id/progress"
                 android:layout_centerInParent="true"
-                android:layout_height="75dp"
+                android:layout_height="60dp"
                 app:mk_type="Whirlpool"
                 app:mk_color="@color/colorPrimary"
                 />
@@ -53,11 +52,11 @@
         <!--       android:layout_below="@id/toolbar"-->
         <!--       />-->
     </RelativeLayout>
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start">
-        <include layout="@layout/drawer_layout" />
-    </com.google.android.material.navigation.NavigationView>
-</androidx.drawerlayout.widget.DrawerLayout>
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:id="@+id/navigation_view"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="start">-->
+<!--        <include layout="@layout/drawer_layout" />-->
+<!--    </com.google.android.material.navigation.NavigationView>-->
+<!--</androidx.drawerlayout.widget.DrawerLayout>-->

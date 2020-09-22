@@ -33,13 +33,13 @@ import com.tuyenmonkey.mkloader.MKLoader;
 public class MainActivity extends AppCompatActivity {
     WebView webView;
     MKLoader progress;
-    NavigationView navigationView;
-    DrawerLayout drawer;
-    TextView privacy,terms_and_condition,faqs,blog;
-    String Url="https://fourcutts.aaratechnologies.in/";
+//    NavigationView navigationView;
+//    DrawerLayout drawer;
+//    TextView privacy,terms_and_condition,faqs,blog;
+    String Url="https://fourcutts.aaratechnologies.in/web/index.php";
 //    ElasticFloatingActionButton fab;
 
-    CardView home,account,order,cart,notification,contactus,paypal;
+//    CardView home,account,order,cart,notification,contactus,paypal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,37 +47,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         progress = findViewById(R.id.progress);
-        privacy = findViewById(R.id.privacy);
-        terms_and_condition = findViewById(R.id.terms_and_conditions);
-        faqs = findViewById(R.id.faqs);
-        blog = findViewById(R.id.blogs);
-        home = findViewById(R.id.home);
-        account = findViewById(R.id.account);
-        order = findViewById(R.id.orders);
-        cart = findViewById(R.id.cart);
-        notification = findViewById(R.id.notification);
-        contactus = findViewById(R.id.contactus);
-        paypal = findViewById(R.id.paypal);
+//        privacy = findViewById(R.id.privacy);
+//        terms_and_condition = findViewById(R.id.terms_and_conditions);
+//        faqs = findViewById(R.id.faqs);
+//        blog = findViewById(R.id.blogs);
+//        home = findViewById(R.id.home);
+//        account = findViewById(R.id.account);
+//        order = findViewById(R.id.orders);
+//        cart = findViewById(R.id.cart);
+//        notification = findViewById(R.id.notification);
+//        contactus = findViewById(R.id.contactus);
+//        paypal = findViewById(R.id.paypal);
 
 
-        Toolbar myToolBar = (Toolbar) findViewById(R.id.toolbar);
-        if (myToolBar != null) {
-            setSupportActionBar(myToolBar);
-//            getSupportActionBar().setLogo(R.drawable.lg1);
-            // myToolBar.setTitle("Dashboard");
-            // requestWindowFeature(Window.FEATURE_NO_TITLE);
-            myToolBar.hideOverflowMenu();
-        }
-        //For drawer
-        navigationView = findViewById(R.id.navigation_view);
-
-        drawer = findViewById(R.id.drawer);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, myToolBar, R.string.open, R.string.close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = findViewById(R.id.navigation_view);
-        myToolBar.setNavigationIcon(R.drawable.menus);
+//        Toolbar myToolBar = (Toolbar) findViewById(R.id.toolbar);
+//        if (myToolBar != null) {
+//            setSupportActionBar(myToolBar);
+////            getSupportActionBar().setLogo(R.drawable.lg1);
+//            // myToolBar.setTitle("Dashboard");
+//            // requestWindowFeature(Window.FEATURE_NO_TITLE);
+//            myToolBar.hideOverflowMenu();
+//        }
+//        //For drawer
+//        navigationView = findViewById(R.id.navigation_view);
+//
+//        drawer = findViewById(R.id.drawer);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, myToolBar, R.string.open, R.string.close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
+//
+//        navigationView = findViewById(R.id.navigation_view);
+//        myToolBar.setNavigationIcon(R.drawable.menus);
         webView = findViewById(R.id.webView);
 //       fab=findViewById(R.id.fab);
         progress.setVisibility(View.GONE);
@@ -93,156 +93,142 @@ public class MainActivity extends AppCompatActivity {
 
         if (isInternetConnected()) {
             webView.loadUrl(Url);
-//            fab.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    SharedPreferences sharedPreferences=getSharedPreferences("url_to_send",MODE_PRIVATE);
-//                    String url1=sharedPreferences.getString("Data","https://lawtrend.in/");
-//                    Log.d("lateurl", "onClick: "+url1);
-//                    Intent sendIntent = new Intent();
-//                    sendIntent.setAction(Intent.ACTION_SEND);
-//                    sendIntent.putExtra(Intent.EXTRA_TEXT, ""+url1+" https://play.google.com/store/apps/details?id="+ BuildConfig.APPLICATION_ID);
-//                    sendIntent.setType("text/plain");
-//                    startActivity(sendIntent);
-//                }
-//            });
+
         } else {
-//            Intent i = new Intent(getApplicationContext(), NextActivity.class);
-//            startActivity(i);
-//            finish();
+
             Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show();
         }
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.closeDrawer(GravityCompat.START);
-                WebSettings webSettings = webView.getSettings();
-                webSettings.setJavaScriptEnabled(true);
-                webSettings.setLoadWithOverviewMode(true);
-                webSettings.getAllowFileAccessFromFileURLs();
-                webSettings.setPluginState(WebSettings.PluginState.ON);
-
-                MywebViewClient mywebViewClient = new MywebViewClient();
-
-                webView.setWebViewClient(mywebViewClient);
-                webView.loadUrl(Url);
-            }
-        });
-        order.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.closeDrawer(GravityCompat.START);
-                WebSettings webSettings = webView.getSettings();
-                webSettings.setJavaScriptEnabled(true);
-                webSettings.setLoadWithOverviewMode(true);
-                webSettings.getAllowFileAccessFromFileURLs();
-                webSettings.setPluginState(WebSettings.PluginState.ON);
-
-                MywebViewClient mywebViewClient = new MywebViewClient();
-
-                webView.setWebViewClient(mywebViewClient);
-
-                webView.loadUrl("https://fourcutts.aaratechnologies.in/customer-order.php");
-            }
-        });
-        account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.closeDrawer(GravityCompat.START);
-                WebSettings webSettings = webView.getSettings();
-                webSettings.setJavaScriptEnabled(true);
-                webSettings.setLoadWithOverviewMode(true);
-                webSettings.getAllowFileAccessFromFileURLs();
-                webSettings.setPluginState(WebSettings.PluginState.ON);
-
-                MywebViewClient mywebViewClient = new MywebViewClient();
-
-                webView.setWebViewClient(mywebViewClient);
-                webView.loadUrl("https://fourcutts.aaratechnologies.in/dashboard.php");
-            }
-        });
-        cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.closeDrawer(GravityCompat.START);
-                WebSettings webSettings = webView.getSettings();
-                webSettings.setJavaScriptEnabled(true);
-                webSettings.setLoadWithOverviewMode(true);
-                webSettings.getAllowFileAccessFromFileURLs();
-                webSettings.setPluginState(WebSettings.PluginState.ON);
-
-                MywebViewClient mywebViewClient = new MywebViewClient();
-
-                webView.setWebViewClient(mywebViewClient);
-                webView.loadUrl("https://fourcutts.aaratechnologies.in/cart.php");
-            }
-        });
-        privacy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.closeDrawer(GravityCompat.START);
-                WebSettings webSettings = webView.getSettings();
-                webSettings.setJavaScriptEnabled(true);
-                webSettings.setLoadWithOverviewMode(true);
-                webSettings.getAllowFileAccessFromFileURLs();
-                webSettings.setPluginState(WebSettings.PluginState.ON);
-
-                MywebViewClient mywebViewClient = new MywebViewClient();
-
-                webView.setWebViewClient(mywebViewClient);
-                webView.loadUrl("https://fourcutts.aaratechnologies.in/privacy&policy.php");
-            }
-        });
-        terms_and_condition.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.closeDrawer(GravityCompat.START);
-                WebSettings webSettings = webView.getSettings();
-                webSettings.setJavaScriptEnabled(true);
-                webSettings.setLoadWithOverviewMode(true);
-                webSettings.getAllowFileAccessFromFileURLs();
-                webSettings.setPluginState(WebSettings.PluginState.ON);
-
-                MywebViewClient mywebViewClient = new MywebViewClient();
-
-                webView.setWebViewClient(mywebViewClient);
-                webView.loadUrl("https://fourcutts.aaratechnologies.in/terms&condition.php");
-            }
-        });
-        faqs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.closeDrawer(GravityCompat.START);
-                WebSettings webSettings = webView.getSettings();
-                webSettings.setJavaScriptEnabled(true);
-                webSettings.setLoadWithOverviewMode(true);
-                webSettings.getAllowFileAccessFromFileURLs();
-                webSettings.setPluginState(WebSettings.PluginState.ON);
-
-                MywebViewClient mywebViewClient = new MywebViewClient();
-
-                webView.setWebViewClient(mywebViewClient);
-                webView.loadUrl("https://fourcutts.aaratechnologies.in/faq.php");
-            }
-        });
-
-        blog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.closeDrawer(GravityCompat.START);
-                WebSettings webSettings = webView.getSettings();
-                webSettings.setJavaScriptEnabled(true);
-                webSettings.setLoadWithOverviewMode(true);
-                webSettings.getAllowFileAccessFromFileURLs();
-                webSettings.setPluginState(WebSettings.PluginState.ON);
-
-                MywebViewClient mywebViewClient = new MywebViewClient();
-
-                webView.setWebViewClient(mywebViewClient);
-                webView.loadUrl("https://fourcutts.aaratechnologies.in/blog.php");
-            }
-        });
-
+//        home.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                drawer.closeDrawer(GravityCompat.START);
+//                WebSettings webSettings = webView.getSettings();
+//                webSettings.setJavaScriptEnabled(true);
+//                webSettings.setLoadWithOverviewMode(true);
+//                webSettings.getAllowFileAccessFromFileURLs();
+//                webSettings.setPluginState(WebSettings.PluginState.ON);
+//
+//                MywebViewClient mywebViewClient = new MywebViewClient();
+//
+//                webView.setWebViewClient(mywebViewClient);
+//                webView.loadUrl(Url);
+//            }
+//        });
+//        order.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                drawer.closeDrawer(GravityCompat.START);
+//                WebSettings webSettings = webView.getSettings();
+//                webSettings.setJavaScriptEnabled(true);
+//                webSettings.setLoadWithOverviewMode(true);
+//                webSettings.getAllowFileAccessFromFileURLs();
+//                webSettings.setPluginState(WebSettings.PluginState.ON);
+//
+//                MywebViewClient mywebViewClient = new MywebViewClient();
+//
+//                webView.setWebViewClient(mywebViewClient);
+//
+//                webView.loadUrl("https://fourcutts.aaratechnologies.in/customer-order.php");
+//            }
+//        });
+//        account.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                drawer.closeDrawer(GravityCompat.START);
+//                WebSettings webSettings = webView.getSettings();
+//                webSettings.setJavaScriptEnabled(true);
+//                webSettings.setLoadWithOverviewMode(true);
+//                webSettings.getAllowFileAccessFromFileURLs();
+//                webSettings.setPluginState(WebSettings.PluginState.ON);
+//
+//                MywebViewClient mywebViewClient = new MywebViewClient();
+//
+//                webView.setWebViewClient(mywebViewClient);
+//                webView.loadUrl("https://fourcutts.aaratechnologies.in/dashboard.php");
+//            }
+//        });
+//        cart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                drawer.closeDrawer(GravityCompat.START);
+//                WebSettings webSettings = webView.getSettings();
+//                webSettings.setJavaScriptEnabled(true);
+//                webSettings.setLoadWithOverviewMode(true);
+//                webSettings.getAllowFileAccessFromFileURLs();
+//                webSettings.setPluginState(WebSettings.PluginState.ON);
+//
+//                MywebViewClient mywebViewClient = new MywebViewClient();
+//
+//                webView.setWebViewClient(mywebViewClient);
+//                webView.loadUrl("https://fourcutts.aaratechnologies.in/cart.php");
+//            }
+//        });
+//        privacy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                drawer.closeDrawer(GravityCompat.START);
+//                WebSettings webSettings = webView.getSettings();
+//                webSettings.setJavaScriptEnabled(true);
+//                webSettings.setLoadWithOverviewMode(true);
+//                webSettings.getAllowFileAccessFromFileURLs();
+//                webSettings.setPluginState(WebSettings.PluginState.ON);
+//
+//                MywebViewClient mywebViewClient = new MywebViewClient();
+//
+//                webView.setWebViewClient(mywebViewClient);
+//                webView.loadUrl("https://fourcutts.aaratechnologies.in/privacy&policy.php");
+//            }
+//        });
+//        terms_and_condition.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                drawer.closeDrawer(GravityCompat.START);
+//                WebSettings webSettings = webView.getSettings();
+//                webSettings.setJavaScriptEnabled(true);
+//                webSettings.setLoadWithOverviewMode(true);
+//                webSettings.getAllowFileAccessFromFileURLs();
+//                webSettings.setPluginState(WebSettings.PluginState.ON);
+//
+//                MywebViewClient mywebViewClient = new MywebViewClient();
+//
+//                webView.setWebViewClient(mywebViewClient);
+//                webView.loadUrl("https://fourcutts.aaratechnologies.in/terms&condition.php");
+//            }
+//        });
+//        faqs.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                drawer.closeDrawer(GravityCompat.START);
+//                WebSettings webSettings = webView.getSettings();
+//                webSettings.setJavaScriptEnabled(true);
+//                webSettings.setLoadWithOverviewMode(true);
+//                webSettings.getAllowFileAccessFromFileURLs();
+//                webSettings.setPluginState(WebSettings.PluginState.ON);
+//
+//                MywebViewClient mywebViewClient = new MywebViewClient();
+//
+//                webView.setWebViewClient(mywebViewClient);
+//                webView.loadUrl("https://fourcutts.aaratechnologies.in/faq.php");
+//            }
+//        });
+//
+//        blog.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                drawer.closeDrawer(GravityCompat.START);
+//                WebSettings webSettings = webView.getSettings();
+//                webSettings.setJavaScriptEnabled(true);
+//                webSettings.setLoadWithOverviewMode(true);
+//                webSettings.getAllowFileAccessFromFileURLs();
+//                webSettings.setPluginState(WebSettings.PluginState.ON);
+//
+//                MywebViewClient mywebViewClient = new MywebViewClient();
+//
+//                webView.setWebViewClient(mywebViewClient);
+//                webView.loadUrl("https://fourcutts.aaratechnologies.in/blog.php");
+//            }
+//        });
+//
 
     }
     private class MywebViewClient extends WebViewClient {
@@ -416,5 +402,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.app_name);
+            builder.setIcon(R.drawable.ic_baseline_exit_to_app_24);
+            builder.setMessage("Do you want to Exit");
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            })
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
     }
 }
