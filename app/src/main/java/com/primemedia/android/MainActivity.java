@@ -1,9 +1,9 @@
-package com.aaratechnologies.allinonewebview;
+package com.primemedia.android;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -15,32 +15,25 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.material.navigation.NavigationView;
-import com.skydoves.elasticviews.ElasticFloatingActionButton;
 import com.tuyenmonkey.mkloader.MKLoader;
 
 public class MainActivity extends AppCompatActivity {
     WebView webView;
     MKLoader progress;
-//    NavigationView navigationView;
+    //    NavigationView navigationView;
 //    DrawerLayout drawer;
 //    TextView privacy,terms_and_condition,faqs,blog;
-    String Url="https://fourcutts.aaratechnologies.in/web/index.php";
+    String Url = "https://www.primemediachannel.com/";
 //    ElasticFloatingActionButton fab;
 
 //    CardView home,account,order,cart,notification,contactus,paypal;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,8 +76,11 @@ public class MainActivity extends AppCompatActivity {
         progress.setVisibility(View.GONE);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+//        webView.addJavascriptInterface(new WebAppInterface(this), "Android");
         webSettings.setLoadWithOverviewMode(true);
         webSettings.getAllowFileAccessFromFileURLs();
+
+        webSettings.setUseWideViewPort(true);
         webSettings.setPluginState(WebSettings.PluginState.ON);
 
         MywebViewClient mywebViewClient = new MywebViewClient();
@@ -97,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
             Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show();
+            finish();
         }
 //        home.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -231,11 +228,12 @@ public class MainActivity extends AppCompatActivity {
 //
 
     }
+
     private class MywebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView webView, String url) {
 //            Toast.makeText(getApplicationContext(), ""+url, Toast.LENGTH_SHORT).show();
-//            if (url.contains("aaratechnologies.in")) {
+//            if (url.contains("primemedia.in")) {
 //                SharedPreferences sharedPreferences = getSharedPreferences("url_to_send", MODE_PRIVATE);
 //                SharedPreferences.Editor editor = sharedPreferences.edit();
 //                editor.putString("Data", url);
@@ -247,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("lasturl", "shouldOverrideUrlLoading: " + url);
 
             if (isInternetConnected()) {
-                if (url.indexOf("aaratechnologies.in") > -1)
+                if (url.indexOf("primemediachannel.com/") > -1)
                     return false;
             } else {
 //                Intent i = new Intent(getApplicationContext(), NextActivity.class);
@@ -322,6 +320,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onKeyDown(keyCode, event);
     }
+
     public boolean isInternetConnected() {
         // At activity startup we manually check the internet status and change
         // the text status
@@ -406,23 +405,29 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.app_name);
-            builder.setIcon(R.drawable.ic_baseline_exit_to_app_24);
-            builder.setMessage("Do you want to Exit");
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.cancel();
-                }
-            })
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            finish();
-                        }
-                    });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.drawable.ic_baseline_exit_to_app_24);
+        builder.setMessage("Do you want to Exit");
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                })
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        webView.destroy();
     }
 }

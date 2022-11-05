@@ -1,4 +1,4 @@
-package com.aaratechnologies.allinonewebview;
+package com.primemedia.android;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.aaratechnologies.allinonewebview", appContext.getPackageName());
+        assertEquals("com.primemedia.android", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package com.aaratechnologies.allinonewebview;
+package com.primemedia.android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
